@@ -1,0 +1,1 @@
+{"portId":"COM5","baudRateList":[{"value":"115200","text":"Humacount 30 TS - (115200)"},{"value":"2400","text":"HumaLyzer Primus - (2400)"},{"value":"65436","text":"Teste - (65436)"}],"selectedBaudRate":"115200","outputPath":["C:\\Users\\diego.rodrigues.DKT-ADG-004\\Desktop\\serial-node\\tmp"]}
