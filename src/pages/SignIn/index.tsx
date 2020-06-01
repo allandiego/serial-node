@@ -4,12 +4,14 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
-import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background, AnimationContainer } from './styles';
+
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
+import logoImg from '../../assets/logo.svg';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
@@ -27,6 +29,13 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
+      addToast({
+        type: 'error',
+        title: 'Erro na Autenticação',
+        duration: 10000,
+        description:
+          'Ocorreu um erro ao realizar o login, verifique seu login e senha.',
+      });
       try {
         formRef.current?.setErrors({});
 
@@ -44,7 +53,6 @@ const SignIn: React.FC = () => {
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
-
           formRef.current?.setErrors(errors);
 
           return;
@@ -65,7 +73,7 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="Go Barber" />
+          <img src={logoImg} alt="Serial Node" />
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>
 

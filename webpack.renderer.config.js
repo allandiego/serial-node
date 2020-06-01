@@ -7,14 +7,30 @@ rules.push({
 });
 
 rules.push({
-  test: /\.(jpg|png|ico|icns)$/,
-  use: [{ loader: 'url-loader' }, { loader: 'file-loader' }],
+  test: /\.(ico|svg|icns)$/,
+  loader: 'file-loader',
+  options: {
+    name: '[path][name].[ext]',
+  },
 });
 
 rules.push({
-  test: /\.svg$/,
-  use: [{ loader: 'svg-inline-loader' }],
+  test: /\.(jpg|png)$/,
+  loader: 'url-loader',
+  options: {
+    name: '[path][name].[ext]',
+  },
 });
+
+// rules.push({
+//   test: /\.(jpg|png)$/,
+//   use: [{ loader: 'url-loader' }, { loader: 'file-loader' }],
+// });
+
+// rules.push({
+//   test: /\.svg$/,
+//   use: [{ loader: 'svg-inline-loader' }],
+// });
 
 // rules.push({
 //   test: /\.(?:png|jpg|svg)$/,

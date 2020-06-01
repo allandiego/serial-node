@@ -37,7 +37,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   background: #ebf8f8;
   color: #3172b7;
 
-  ${(props) => toastTypeVariations[props.type || 'info']}
+  ${props => toastTypeVariations[props.type || 'info']}
 
   > svg {
     margin: 4px 12px 0 0;
@@ -64,7 +64,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     color: inherit;
   }
 
-  ${(props) =>
+  ${props =>
     !props.hasDescription &&
     css`
       align-items: center;

@@ -7,22 +7,22 @@ interface SignInCredencials {
 }
 
 interface AuthContextData {
-  user: object;
+  user: Record<string, unknown>;
   signIn(credencials: SignInCredencials): Promise<void>;
   signOut(): void;
 }
 
 interface AuthState {
   token: string;
-  user: object;
+  user: Record<string, unknown>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@SerialNode:token');
+    const user = localStorage.getItem('@SerialNode:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -32,19 +32,21 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('/sessions', { email, password });
+    // const response = await api.post('/sessions', { email, password });
 
-    const { token, user } = response.data;
+    // const { token, user } = response.data;
+    const token = 'token-jwt';
+    const user = { id: 1, name: 'Diego' };
 
-    localStorage.setItem('@GoBarber:token', token);
-    localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+    localStorage.setItem('@SerialNode:token', token);
+    localStorage.setItem('@SerialNode:user', JSON.stringify(user));
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:token');
-    localStorage.removeItem('@GoBarber:user');
+    localStorage.removeItem('@SerialNode:token');
+    localStorage.removeItem('@SerialNode:user');
 
     setData({} as AuthState);
   }, []);

@@ -10,7 +10,7 @@ import { Container } from './styles';
 
 interface ToastProps {
   message: ToastMessage;
-  style: object;
+  style: Record<string, unknown>;
 }
 
 const Toast: React.FC<ToastProps> = ({ message, style }) => {
@@ -25,12 +25,12 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       removeToast(message.id);
-    }, 5000);
+    }, message.duration ?? 5000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [message.id, removeToast]);
+  }, [message.id, message.duration, removeToast]);
 
   return (
     <Container

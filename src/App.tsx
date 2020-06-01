@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
 import GlobalStyle from './styles/global';
